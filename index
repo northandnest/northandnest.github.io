@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="North & Nest daily dashboard for weight, habits, mood, weekly reflection, and gentle coaching." />
+    <title>North & Nest</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="app">
+      <section class="screen public-screen" data-screen="public">
+        <nav class="topbar" aria-label="Primary">
+          <a class="brand" href="#home" aria-label="North and Nest home"><span class="brand-mark">N&N</span><span>North & Nest</span></a>
+          <button class="text-button" type="button" data-action="show-login">Sign in</button>
+        </nav>
+        <section class="hero" id="home">
+          <div class="hero-copy">
+            <p class="eyebrow">Daily rhythm, softly held.</p>
+            <h1>North & Nest</h1>
+            <p class="hero-text">A calm private dashboard for body notes, small habits, mood, and the weekly patterns that help you return to yourself.</p>
+            <div class="hero-actions"><button class="primary-button" type="button" data-action="show-login">Open My Dashboard</button><a class="quiet-link" href="#ritual">See the ritual</a></div>
+          </div>
+          <div class="hero-visual" aria-hidden="true"><div class="paper-panel"><div class="panel-row"><span>Today</span><strong>Day <span data-preview-day>1</span></strong></div><div class="weight-line"><span class="weight-dot"></span><span>Morning weight</span><b>--.-</b></div><div class="mini-habits"><span></span><span></span><span></span><span></span></div><p>Small proof, gathered gently.</p></div></div>
+        </section>
+        <section class="public-band" id="ritual">
+          <div><p class="eyebrow">The practice</p><h2>Track less loudly. Notice more clearly.</h2></div>
+          <div class="feature-grid"><article><span>01</span><h3>Daily body note</h3><p>Save weight and a short signal without turning your morning into a spreadsheet.</p></article><article><span>02</span><h3>Habits and mood</h3><p>Check the simple anchors that make a day feel cared for.</p></article><article><span>03</span><h3>Weekly return</h3><p>See consistency, yesterday's completion, and a coach note drawn from your own data.</p></article></div>
+        </section>
+      </section>
+      <section class="screen auth-screen hidden" data-screen="login">
+        <div class="auth-card">
+          <a class="brand auth-brand" href="#home" data-action="show-public"><span class="brand-mark">N&N</span><span>North & Nest</span></a>
+          <div><p class="eyebrow">Private dashboard</p><h1>Welcome back.</h1><p class="muted">Use any name and passcode on this device. Your check-ins stay in this browser.</p></div>
+          <form id="loginForm" class="login-form"><label>Name<input id="nameInput" name="name" autocomplete="name" placeholder="Nancy" required /></label><label>Passcode<input id="passcodeInput" name="passcode" type="password" autocomplete="current-password" placeholder="Passcode" required /></label><button class="primary-button wide" type="submit">Enter dashboard</button></form>
+          <button class="quiet-button" type="button" data-action="show-public">Back to home</button>
+        </div>
+      </section>
+      <section class="screen dashboard-screen hidden" data-screen="dashboard">
+        <header class="dashboard-header"><a class="brand" href="#dashboard" aria-label="North and Nest dashboard"><span class="brand-mark">N&N</span><span>North & Nest</span></a><button class="icon-button" type="button" data-action="logout" aria-label="Sign out"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6H6.8A1.8 1.8 0 0 0 5 7.8v8.4A1.8 1.8 0 0 0 6.8 18H10" /><path d="M14 8l4 4-4 4" /><path d="M9 12h9" /></svg></button></header>
+        <section class="today-strip"><div><p class="eyebrow">My Dashboard</p><h1>Day <span id="dayNumber">1</span></h1></div><div class="date-stack"><span id="todayLabel">Today</span><strong id="userName">You</strong></div></section>
+        <section class="metric-row" aria-label="Progress summary"><article class="metric"><span>Yesterday Completed</span><strong id="yesterdayCompleted">--</strong></article><article class="metric"><span>Consistency</span><strong id="consistency">0%</strong></article><article class="metric"><span>This Week</span><strong id="weekCompleted">0/7</strong></article></section>
+        <section class="dashboard-grid">
+          <article class="checkin-panel"><div class="panel-heading"><div><p class="eyebrow">Daily check-in</p><h2>Today</h2></div><span class="saved-pill" id="saveStatus">Saved</span></div><form id="checkinForm" class="checkin-form"><label class="weight-field">Weight<span><input id="weightInput" inputmode="decimal" placeholder="--.-" /><b>lb</b></span></label><fieldset class="habit-fieldset"><legend>Habits</legend><label><input type="checkbox" name="habit" value="water" /> Water</label><label><input type="checkbox" name="habit" value="walk" /> Walk</label><label><input type="checkbox" name="habit" value="protein" /> Protein</label><label><input type="checkbox" name="habit" value="sleep" /> Sleep</label></fieldset><fieldset class="mood-fieldset"><legend>Mood</legend><label><input type="radio" name="mood" value="low" /> Low</label><label><input type="radio" name="mood" value="steady" /> Steady</label><label><input type="radio" name="mood" value="bright" /> Bright</label></fieldset><label>Note<textarea id="noteInput" rows="4" placeholder="One small thing worth noticing."></textarea></label></form></article>
+          <article class="summary-panel"><div class="panel-heading"><div><p class="eyebrow">Weekly summary</p><h2>Last 7 days</h2></div></div><div class="week-bars" id="weekBars" aria-label="Weekly completion bars"></div><div class="summary-list"><p><span>Average completion</span><strong id="avgCompletion">0%</strong></p><p><span>Average mood</span><strong id="avgMood">--</strong></p><p><span>Weight trend</span><strong id="weightTrend">--</strong></p></div></article>
+          <article class="coach-panel"><div class="panel-heading"><div><p class="eyebrow">AI Coach</p><h2>Gentle next step</h2></div></div><p id="coachMessage">Begin with one honest check-in. The pattern will become visible as you return.</p></article>
+          <article class="history-panel"><div class="panel-heading"><div><p class="eyebrow">Recent days</p><h2>Saved locally</h2></div></div><div class="history-list" id="historyList"></div></article>
+        </section>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
